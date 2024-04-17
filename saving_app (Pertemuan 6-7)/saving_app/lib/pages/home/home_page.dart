@@ -133,11 +133,85 @@ class HomePage extends StatelessWidget {
                 ],
               ),
             ),
+            Container(
+              margin: EdgeInsets.only(top: 200),
+              child: DraggableScrollableSheet(
+                  builder: (context, ScrollController) {
+                return Container(
+                  decoration: BoxDecoration(
+                      color: kWhite,
+                      borderRadius:
+                          BorderRadius.vertical(top: Radius.circular(40))),
+                  padding: const EdgeInsets.only(
+                    left: 30,
+                    right: 30,
+                    top: 21,
+                  ),
+                  child: Stack(
+                    children: [
+                      Container(
+                        margin: EdgeInsets.only(top: 14 + 4),
+                        child: SingleChildScrollView(
+                          controller: ScrollController,
+                          child: Column(
+                            children: [
+                              Center(
+                                child: Text(
+                                  'Transactions History',
+                                  style: kHeading6.copyWith(
+                                      color: kLuckyBlue,
+                                      fontWeight: FontWeight.w600),
+                                ),
+                              ),
+                              SizedBox(
+                                height: 31,
+                              ),
+                              _transactionList(
+                                  kTreeGreen.withOpacity(0.2),
+                                  'assets/icons/triangle-up.png',
+                                  'Success!',
+                                  'February 19, 03:25 PM',
+                                  '+ 100.000'),
+                              _transactionList(
+                                  kTreeGreen.withOpacity(0.2),
+                                  'assets/icons/triangle-up.png',
+                                  'Success!',
+                                  'February 16, 01:25 PM',
+                                  '+ 150.000'),
+                              _transactionList(
+                                  kOrange.withOpacity(0.2),
+                                  'assets/icons/triangle-down.png',
+                                  'Starbucks Drinks',
+                                  'February 10, 12:25 PM',
+                                  '- 110.000'),
+                              _transactionList(
+                                  kOrange.withOpacity(0.2),
+                                  'assets/icons/triangle-down.png',
+                                  'Payment Invest',
+                                  'February 5, 11:05 PM',
+                                  '- 130.000'),
+                            ],
+                          ),
+                        ),
+                      ),
+                      Align(
+                        alignment: Alignment.topCenter,
+                        child: Container(
+                          height: 4,
+                          width: 49,
+                          color: kEgyptianBlue.withOpacity(0.1),
+                        ),
+                      )
+                    ],
+                  ),
+                );
+              }),
+            )
           ],
         ),
       ),
     );
-  } 
+  }
 
   Widget _transactionList(
       Color bgColor, String icon, String title, String sub, String amount) {
@@ -168,18 +242,14 @@ class HomePage extends StatelessWidget {
               ),
               Text(
                 sub,
-                style: kCaption.copyWith(
-                  color: kLightGray,
-                ),
-              )
+                style: kCaption.copyWith(color: kLightGray),
+              ),
             ],
           ),
           Spacer(),
           Text(
             amount,
-            style: kBody1.copyWith(
-              color: kLuckyBlue,
-            ),
+            style: kBody1.copyWith(color: kLuckyBlue),
           )
         ],
       ),
